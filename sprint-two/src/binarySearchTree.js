@@ -35,6 +35,16 @@ var BinarySearchTree = function(value) {
     }
   };
 
+  tree.breadthFirstLog = function(cb) {
+    var searchArray = [this];
+    do {
+      for (var i = 0; i < searchArray.length; i++) {
+        cb(searchArray[i].value);
+        if 
+      }
+    } while (childArray.length > 0)
+  }
+
   return tree;
 };
 
