@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Stack Instantiation Comparison</title>
+  <script type="text/javascript" src="./sprint-one/src/pseudoclassical/stack.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+  var stacks = [];
+  for ( var i = 1; i < 100000; i++ ) {
+    stacks.push(Stack());
+  }
+</script>
+</body>
+</html>
+
+<!-- SPEED ANALYSIS -->
+<!-- Functional: 4.3s for 10m -->
+<!-- Functional-shared: 470 ms for 10m -->
+<!-- Prototypal: 1.7 s for 10m -->
+<!-- Pseudoclassical: 253 ms for 10m -->
+
+<!-- MEMORY ANALYSIS -->
+<!-- Functional: 41.2 MB @ 100k instances -->
+<!-- Functional-shared: 14.5MB @ 100k instances -->
+<!-- Prototypal: 13.8MB @ 100k instances -->
+<!-- Pseudoclassical: 3.8MB @ 100k instances -->
