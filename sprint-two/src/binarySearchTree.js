@@ -8,7 +8,7 @@ var BinarySearchTree = function(value) {
   tree.insert = function(value) {
     if (value < this.value) {
       this.left === null ? this.left = BinarySearchTree(value) : this.left.insert(value);
-    } else {
+    } else if (value > this.value) {
       this.right === null ? this.right = BinarySearchTree(value) : this.right.insert(value);
     }
   };
@@ -37,18 +37,30 @@ var BinarySearchTree = function(value) {
 
   tree.breadthFirstLog = function(cb) {
     var searchArray = [this];
-    do {
-      for (var i = 0; i < searchArray.length; i++) {
-        cb(searchArray[i].value);
-        if 
-      }
-    } while (childArray.length > 0)
-  }
+
+    for (var i = 0; i < searchArray.length; i++) {
+      cb(searchArray[i].value);
+      if (searchArray[i].left !== null) searchArray.push(searchArray[i].left);
+      if (searchArray[i].right !== null) searchArray.push(searchArray[i].right);
+    }
+  };
 
   return tree;
+
 };
 
 
 /*
  * Complexity: What is the time complexity of the above functions?
  */
+
+//  var tree = BinarySearchTree(5);
+//  tree.insert(4);
+//  tree.insert(7);
+//  tree.insert(3);
+//  tree.insert(6);
+//  tree.insert(8);
+
+//  tree.breadthFirstLog(function(val){
+//   console.log(val);
+// });

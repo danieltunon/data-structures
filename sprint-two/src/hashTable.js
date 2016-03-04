@@ -69,6 +69,7 @@ HashTable.prototype.resize = function () {
     debugger;
     var oldData = this._storage;
     this._storage = LimitedArray(newLimit);
+    
 
     for (var i = 0; i < oldLimit; i++) {
       var tuples = oldData.get(i);
