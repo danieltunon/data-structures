@@ -2,13 +2,13 @@
 <html>
 <head>
   <title>Stack Instantiation Comparison</title>
-  <script type="text/javascript" src="./sprint-one/src/pseudoclassical/stack.js"></script>
+  <script type="text/javascript" src="./sprint-one/src/prototypal/stack.js"></script>
 </head>
 <body>
 <script type="text/javascript">
   var stacks = [];
   for ( var i = 1; i < 100000; i++ ) {
-    stacks.push(Stack());
+    Stack();
   }
 </script>
 </body>
@@ -24,4 +24,4 @@
 <!-- Functional: 41.2 MB @ 100k instances -->
 <!-- Functional-shared: 14.5MB @ 100k instances -->
 <!-- Prototypal: 13.8MB @ 100k instances -->
-<!-- Pseudoclassical: 3.8MB @ 100k instances -->
+<!-- Pseudoclassical: 13MB @ 100k instances -->
