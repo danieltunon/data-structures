@@ -45,6 +45,47 @@ var BinarySearchTree = function(value) {
     }
   };
 
+  tree.ascendingLog = function(cb) {
+    if (this.left !== null) {
+      this.left.ascendingLog(cb);
+    }
+    cb(this.value);
+    if (this.right !== null) {
+      this.right.ascendingLog(cb);
+    }
+  };
+
+  tree.rebalance = function() {
+    var treeArray = [];
+    this.ascendingLog(function(val) {
+      treeArray.push(val);
+    });
+
+    var medianIndex = Math.floor(treeArray.length / 2);
+    tree.value = treeArray[medianIndex];
+
+    var smallerVals = treeArray.slice(0, medianIndex);
+    var largerVals = treeArray.slice(medianIndex + 1);
+
+    var treeifyArray = function(arr) {
+      if (arr.length === 1) {
+        return BinarySearchTree(arr[0]);
+      } else {
+        var apexIndex = Math.floor(arr.length / 2);
+        var apex = BinarySearchTree(arr[apexIndex]);
+        var leftOfApex = arr.slice(0, apexIndex);
+        var rightOfApex = arr.slice(apexIndex + 1);
+        apex.left = treeifyArray(leftOfApex);
+        apex.right = treeifyArray(rightOfApex);
+        return apex;
+      }
+    };
+
+    tree.left = treeifyArray(smallerVals);
+    tree.right = treeifyArray(largerVals);
+  };
+
+
   return tree;
 
 };
@@ -62,5 +103,20 @@ var BinarySearchTree = function(value) {
 //  tree.insert(8);
 
 //  tree.breadthFirstLog(function(val){
+//   console.log(val);
+// });
+
+
+
+
+// var tree = BinarySearchTree(9);
+// tree.insert(8);
+// tree.insert(10);
+// tree.insert(6);
+// tree.insert(5);
+// tree.insert(7);
+// tree.insert(1);
+// tree.rebalance();
+// tree.breadthFirstLog(function(val) {
 //   console.log(val);
 // });
