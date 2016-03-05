@@ -8,6 +8,7 @@ var PrefixTree = function() {
 
   newTree.addWord = treeMethods.addWord;
   newTree.search  = treeMethods.search;
+  newTree.allWords = treeMethods.allWords;
 
   return newTree;
 };
@@ -46,20 +47,43 @@ treeMethods.search = function(word) {
 
   for (var i = 0; i < children.length; i++) {
     if (children[i].value === word.charAt(0)) {
-      return this.value.concat(children[i].search(word.slice(1)));;
+      return this.value.concat(children[i].search(word.slice(1)));
     }
   }
 
   return '';
 };
 
+treeMethods.allWords = function(letters) {
+  var children = this.children;
+  var words = [];
 
+  for (var i = 0; i < letters.length; i++) {
+    for (var j = 0; j < children.length; j++) {
+      if (children[j].value === letters[i]) {
+        var lettersCopy = letters.slice();
+        lettersCopy.splice(i, 1);
+        words = words.concat(children[j].allWords(lettersCopy));
+      }
+    }
+  }
 
+  if (this.isWord) {
+    words.push('');
+  }
 
+  for (var i = 0; i < words.length; i++) {
+    words[i] = this.value.concat(words[i]);
+  }
 
+  return words;
+}
 
+var tree = PrefixTree();
 
-
+for (var i = 0; i < words.length; i++) {
+  tree.addWord(words[i]);
+}
 
 
 
